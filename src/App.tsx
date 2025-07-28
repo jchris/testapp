@@ -4,12 +4,12 @@ import { useFireproof } from "use-fireproof";
 function NotesApp({ databaseName }: { databaseName: string }) {
   const { useDocument, useLiveQuery, database } = useFireproof(databaseName);
   const { doc, merge, submit } = useDocument({ text: "" });
-  const { docs } = useLiveQuery("_id", { descending: true });
+  const { docs } = useLiveQuery<{ text : string }>("_id", { descending: true });
 
   return (
     <>
       <form
-        onSubmit={submit}
+        onSubmit={() => submit()}
         style={{ display: "flex", gap: 8, marginBottom: 24 }}
         autoComplete="off"
       >
